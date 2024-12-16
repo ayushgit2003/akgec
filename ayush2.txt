@@ -1,0 +1,69 @@
+
+//Solution2 Ayush Tripathi
+#include<bits/stdc++.h>
+using namespace std;
+bool checkprime(int n) {
+    if (n <= 1) 
+    return false;
+    if (n == 2 || n == 3) 
+    return true;
+    if (n % 2 == 0 || n % 3 == 0)
+    return false;
+    for (int i = 5; i * i <= n; i += 6) {
+        if (n % i == 0) return false;
+    }
+    return true;
+}
+
+ 
+ 
+
+int main() {
+    vector<int> arr1 = {1,6, 4, 13, 9, 3};
+    vector<int> temp;
+    int n = arr1.size();
+    
+    
+    for(int i=0;i<n;i++)
+    
+    {
+        if(checkprime(arr1[i]) == true){
+            temp.push_back(arr1[i]);
+        }
+    }
+    sort(temp.begin(),temp.end(), greater<int>());
+    int tempsize = temp.size();
+    int first = temp[tempsize-1];
+    int last = temp[0];
+    
+    vector<int> temp2;
+    
+    
+    for(int i =0;i<n;i++){
+        if(first != arr1[i]){
+            if(last != arr1[i] )
+            temp2.push_back(arr1[i] );
+        }
+        else if(first != arr1[i]   ){
+            if(last != arr1[i]  )
+            temp2.push_back(arr1[i] );
+        }
+    }
+    int temp2size =temp2.size();
+    vector<int> result;
+    
+    result.push_back(last);
+    sort(temp2.begin(),temp2.end(), greater<int>());
+    for(int i =0;i<temp2size;i++){
+          result.push_back(temp2[i]);
+    }
+      result.push_back(first);
+     int rw =result.size();
+    for(int i =0;i<rw;i++){
+          cout<<result[i]<<" ";
+    }
+    
+
+     
+    return 0;
+}
